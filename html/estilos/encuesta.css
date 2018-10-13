@@ -1,0 +1,40 @@
+body{
+background: url(../imagenes/FondoUCA.png) no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+background-position: center;
+min-width: 100%;
+min-height: 100%;
+}
+table,td,th
+{
+	
+}
+.docencia
+{
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+h1 {
+    color: black;
+}
+p {
+    color: #c9c9c9;
+}
+#preguntas {
+	
+	
+	
+}
+.centrado{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	
+}
+
