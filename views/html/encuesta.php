@@ -1,7 +1,7 @@
 <html>
   <head>
   
-	<link rel="stylesheet" href="estilos/encuesta.css">
+	<link rel="stylesheet" href="views/html/estilos/encuesta.css">
  
   </head>
   <body>

@@ -4,10 +4,8 @@
  	* @version 1.0
  	*/
 
-	require('./Clases/conexion.php');
-	//Aquí se incluye el formulariom html
+	require('./kernel/index.php');
 
-	$Link = new PDOp('mysql:host=localhost;dbname=encuesta', 
-	'root','');//Conexion a BBDD
+	
 
 ?>
