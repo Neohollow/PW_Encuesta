@@ -1,3 +1,19 @@
+<?php
+ define('USER','root');//Cambiar usuario
+ define('PASS','');//Cambiar la pass
+ //define('FECHA_CADENA',strtotime(FECHA));
+
+ require __DIR__.'./../../Clases/conexion.php';
+ $dsn = 'mysql:dbname=encuesta;host=127.0.0.1;';
+ //Creamos la conexión
+
+ $conexion = new PDO($dsn,USER,PASS);//Creamos la conexión
+ /**
+  * Comprobamos si el servidor soporta la version de PHP actual.
+  */
+
+?>
+
 <!DOCTYPE HTML>
 <html>
   <head>
