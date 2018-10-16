@@ -1,3 +1,10 @@
+/* Author: José Manuel Morales García */
+
+/*
+#############
+Empieza BODY
+#############
+*/
 body{
 background: url(../imagenes/FondoUCA.png) no-repeat center center fixed;
 -webkit-background-size: cover;
@@ -8,10 +15,12 @@ background-position: center;
 min-width: 100%;
 min-height: 100%;
 }
-table,td,th
-{
-	
-}
+
+/*
+########################
+Empieza Table y Headers
+########################
+*/
 .docencia
 {
 
@@ -24,11 +33,6 @@ h1 {
 }
 p {
     color: #c9c9c9;
-}
-#preguntas {
-	
-	
-	
 }
 .centrado{
 	display: flex;

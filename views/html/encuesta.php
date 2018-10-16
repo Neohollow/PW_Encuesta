@@ -1,6 +1,7 @@
+<!DOCTYPE HTML>
 <html>
   <head>
-  
+  <!-- José Manuel Morales García -->  
 	<link rel="stylesheet" href="views/html/estilos/encuesta.css">
  
   </head>
