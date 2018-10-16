@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2018 a las 10:18:09
+-- Tiempo de generación: 16-10-2018 a las 13:05:42
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 5.6.38
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `encuesta`
+-- Base de datos: `proyecto1`
 --
 
 -- --------------------------------------------------------
@@ -123,11 +123,65 @@ INSERT INTO `profesor` (`id_profesor`, `Codigo`, `Pass`, `Nombre`) VALUES
 --
 
 CREATE TABLE `respuesta` (
+  `id_seccion` int(11) NOT NULL,
   `id_pregunta` int(11) NOT NULL,
   `id_respuesta` int(11) NOT NULL,
-  `id_encuesta` int(11) NOT NULL,
   `texto` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `respuesta`
+--
+
+INSERT INTO `respuesta` (`id_seccion`, `id_pregunta`, `id_respuesta`, `texto`) VALUES
+(1, 1, 1, '1'),
+(1, 1, 2, '2'),
+(1, 1, 3, '3'),
+(1, 1, 4, '>3'),
+(1, 2, 1, '1'),
+(1, 2, 2, '2'),
+(1, 2, 3, '3'),
+(1, 2, 4, '>3'),
+(1, 3, 1, 'Nada'),
+(1, 3, 2, 'Algo'),
+(1, 3, 3, 'Bastante'),
+(1, 3, 4, 'Mucho'),
+(1, 4, 1, 'Nada'),
+(1, 4, 2, 'Algo'),
+(1, 4, 3, 'Bastante'),
+(1, 4, 4, 'Mucho'),
+(1, 5, 1, 'baja'),
+(1, 5, 2, 'Media'),
+(1, 5, 3, 'Alta'),
+(1, 5, 4, 'Muy alta'),
+(1, 6, 1, 'N.P.'),
+(1, 6, 2, 'Suspenso'),
+(1, 6, 3, 'Aprobado'),
+(1, 6, 4, 'Notable'),
+(1, 6, 5, 'Sobresaliente'),
+(1, 6, 6, 'Matricula de Honor'),
+(1, 7, 1, 'Menos del 50%'),
+(1, 7, 2, 'Entre 50%-80%'),
+(1, 7, 3, 'Mas del 80%'),
+(1, 8, 1, '19'),
+(1, 8, 2, '20-21'),
+(1, 8, 3, '22-23'),
+(1, 8, 4, '24-25'),
+(1, 8, 5, '>25'),
+(1, 9, 1, 'Hombre'),
+(1, 9, 2, 'Mujer'),
+(1, 10, 1, '1'),
+(1, 10, 2, '2'),
+(1, 10, 3, '3'),
+(1, 10, 4, '4'),
+(1, 10, 5, '5'),
+(1, 10, 6, '6'),
+(1, 11, 1, '1'),
+(1, 11, 2, '2'),
+(1, 11, 3, '3'),
+(1, 11, 4, '4'),
+(1, 11, 5, '5'),
+(1, 11, 6, '6');
 
 -- --------------------------------------------------------
 
@@ -181,7 +235,7 @@ ALTER TABLE `profesor`
 -- Indices de la tabla `respuesta`
 --
 ALTER TABLE `respuesta`
-  ADD PRIMARY KEY (`id_pregunta`,`id_respuesta`);
+  ADD PRIMARY KEY (`id_seccion`,`id_pregunta`,`id_respuesta`);
 
 --
 -- Indices de la tabla `seccion`
