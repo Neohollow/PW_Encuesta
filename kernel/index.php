@@ -11,7 +11,7 @@
  define('PHP_V',5);
 
  //Rutas a cargar
- require __DIR__.'./../views/html/encuesta.php';
+ include __DIR__.'/../Clases/Router.php';
 
  function checkPHPV()
  {
@@ -19,6 +19,11 @@
  	if($expl_vsn[0] < PHP_V)
  		echo "<script type='text/javascript'>alert('¡La version de PHP ".$expl_vsn[0]." es incompatible con nuestro sistema!');</script>;";
  }
+
+ $request = $_SERVER['REQUEST_URI'];
+ $router = new Router($request);//Obtenemos la ruta actual
+ $router->get('/nachoE/',__DIR__.'/../views/html/encuesta');
+ 
  
 
 ?>

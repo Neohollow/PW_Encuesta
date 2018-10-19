@@ -1,4 +1,9 @@
 <?php
+	/**
+	 * @author José Joaquín Pérez-Calderón Ortiz
+	 * @package Clases
+	 * @version 1.0
+	 */
 	class PDOp extends PDO 
 	{
 	    function __construct($dsn, $username="", $password="", $driver_options=array()) {

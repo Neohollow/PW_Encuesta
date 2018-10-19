@@ -8,10 +8,7 @@ background-position: center;
 min-width: 100%;
 min-height: 100%;
 }
-table,td,th
-{
-	
-}
+
 .docencia
 {
 
@@ -25,16 +22,30 @@ h1 {
 p {
     color: #c9c9c9;
 }
-#preguntas {
-	
-	
-	
+
+#env
+{
+	background-color: #d35400; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    float: left;
+    margin-left: 45%;
+    margin-top: 3%;
+    margin-bottom: 3%;
 }
+#env:hover
+{
+	background-color: #e67e22;
+}
+
 .centrado{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	
-	
 }
 
