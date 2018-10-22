@@ -20,7 +20,7 @@
  		echo "<script type='text/javascript'>alert('¡La version de PHP ".$expl_vsn[0]." es incompatible con nuestro sistema!');</script>;";
  }
 
- $request = $_SERVER['REQUEST_URI'];
+ $request = $_SERVER['REQUEST_URI'];//La URI que se empleó para acceder a la página
  $router = new Router($request);//Obtenemos la ruta actual
  $router->get('/nachoE/',__DIR__.'/../views/html/encuesta');
  
