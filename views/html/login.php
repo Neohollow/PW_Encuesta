@@ -43,7 +43,7 @@ if(isset($boton)){
   $stm=$conexion->query($sql);
   $res=$stm->fetch();
   echo $res["tipo"];
-  if($res["tipo"]==1)//1 = Profesor 0= Alumno
+  if($res["tipo"]==0)//1 = Profesor 0= Alumno
   $router->get(rtrim(PROJECT_ROOT)."/",__DIR__.'/../views/html/administracion');
   else{
 

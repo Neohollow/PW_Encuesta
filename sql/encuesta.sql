@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 19-10-2018 a las 02:29:59
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 23-10-2018 a las 11:09:50
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 5.6.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -93,29 +93,6 @@ INSERT INTO `pregunta` (`id_seccion`, `id_pregunta`, `pregTexto`, `id`) VALUES
 (8, 2, 'Los criterios y sistemas de evaluación me parecen adecuados, en el contexto de la asignatura', 32),
 (9, 1, 'Las actividades desarrolladas (teóricas, prácticas, de trabajo individual, en grupo,...)\r\ncontribuyen a alcanzar los objetivos de la asignatura', 33),
 (9, 2, 'Estoy satisfecho/a con la labor docente de este/a profesor/a', 34);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `profesor`
---
-
-CREATE TABLE `profesor` (
-  `id_profesor` int(11) NOT NULL,
-  `Codigo` int(11) NOT NULL,
-  `Pass` text NOT NULL,
-  `Nombre` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `profesor`
---
-
-INSERT INTO `profesor` (`id_profesor`, `Codigo`, `Pass`, `Nombre`) VALUES
-(1, 1111, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Federico Pelaez'),
-(2, 2222, 'd2f75e8204fedf2eacd261e2461b2964e3bfd5be', 'Pepito Grillo'),
-(3, 3333, 'ae8fe380dd9aa5a7a956d9085fe7cf6b87d0d028', 'Karl Marx'),
-(4, 4444, '83787f060a59493aefdcd4b2369990e7303e186e', 'Iosif Stalin');
 
 -- --------------------------------------------------------
 
@@ -348,6 +325,28 @@ INSERT INTO `seccion` (`id_seccion`, `tipo_seccion`) VALUES
 (8, 'Sistemas de evaluación'),
 (9, 'RESULTADOS:');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(6) UNSIGNED NOT NULL,
+  `usuario` varchar(30) NOT NULL,
+  `contrasenna` varchar(500) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `tipo` smallint(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `usuario`, `contrasenna`, `email`, `tipo`) VALUES
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', NULL, 1),
+(2, 'user', '12dea96fec20593566ab75692c9949596833adc9', NULL, 0);
+
 --
 -- Índices para tablas volcadas
 --
@@ -365,12 +364,6 @@ ALTER TABLE `pregunta`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `profesor`
---
-ALTER TABLE `profesor`
-  ADD PRIMARY KEY (`id_profesor`);
-
---
 -- Indices de la tabla `respuesta`
 --
 ALTER TABLE `respuesta`
@@ -383,6 +376,14 @@ ALTER TABLE `seccion`
   ADD PRIMARY KEY (`id_seccion`);
 
 --
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `Usuario` (`usuario`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -391,16 +392,19 @@ ALTER TABLE `seccion`
 --
 ALTER TABLE `encuesta`
   MODIFY `id_encuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
 --
--- AUTO_INCREMENT de la tabla `profesor`
+-- AUTO_INCREMENT de la tabla `usuario`
 --
-ALTER TABLE `profesor`
-  MODIFY `id_profesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;COMMIT;
+ALTER TABLE `usuario`
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
