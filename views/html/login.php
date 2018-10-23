@@ -44,10 +44,10 @@ if(isset($boton)){
   $res=$stm->fetch();
   echo $res["tipo"];
   if($res["tipo"]==1)//1 = Profesor 0= Alumno
-  $router->get('/PW_Encuesta/',__DIR__.'/../views/html/administracion');
+  $router->get(rtrim(PROJECT_ROOT)."/",__DIR__.'/../views/html/administracion');
   else{
 
-  $router->get('/PW_Encuesta/',__DIR__.'/../views/html/encuesta');
+  $router->get(rtrim(PROJECT_ROOT)."/",__DIR__.'/../views/html/encuesta');
   }
 }
 

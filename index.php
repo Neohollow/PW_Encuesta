@@ -4,7 +4,6 @@
  	 * @author José Manuel Morales García
  	 * @version 1.0
  	 */
-
 	define('PROJECT_ROOT',basename(dirname(__FILE__)).PHP_EOL);
 	require(__DIR__.'/kernel/index.php');//Incluimos el kernel
 	/*
