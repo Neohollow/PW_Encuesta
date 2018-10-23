@@ -22,7 +22,15 @@
 
  $request = $_SERVER['REQUEST_URI'];//La URI que se empleó para acceder a la página
  $router = new Router($request);//Obtenemos la ruta actual
- $router->get('/nachoE/',__DIR__.'/../views/html/encuesta');
+ if(isset($_SESSION["inicio"])){
+
+ 	$router->get('/PW_Encuesta/',__DIR__.'/../views/html/encuesta');
+ }
+ else{
+
+ 	$router->get('/PW_Encuesta/',__DIR__.'/../views/html/login');
+ }
+
  
  
 
