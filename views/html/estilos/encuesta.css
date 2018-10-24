@@ -62,7 +62,7 @@ min-height: 100%;
  Login
 #######
 */
-.form-heading { color:#fff; font-size:23px;}
+.form-heading { color:#000000; font-size:23px;}
 .panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
 .panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
 .login-form .form-control {
@@ -104,7 +104,7 @@ min-height: 100%;
   text-align: left; margin-bottom:30px;
 }
 .botto-text {
-  color: #ffffff;
+  color: #000000;
   font-size: 14px;
   margin: auto;
 }

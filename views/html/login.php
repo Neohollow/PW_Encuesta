@@ -90,7 +90,7 @@ if(isset($boton))
 
     </form>
     </div>
-<p class="botto-text">&copy;Jos&eacute; Manuel Morales Garc&iacute;a</p>
+<p class="botto-text", color:black>&copy;Ucaplus</p>
 </div>
 </div>
 </div>
