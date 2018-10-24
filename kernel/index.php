@@ -1,4 +1,5 @@
 <?php
+ session_start();//Iniciamos las posibles sesiones
  /**
  * EncuestasUca º Aplicación para gestionar 
  *				º las estadísticas de la universidad
@@ -19,9 +20,13 @@
  $request = $_SERVER['REQUEST_URI'];
  $router = new Router($request);//Obtenemos la ruta actual
 
- $router->get(rtrim(PROJECT_ROOT)."/",__DIR__.'/../views/html/login');
-
-
- 
+ if(!isset($_SESSION["datos_sesion"]))
+ {
+ 	$router->get(rtrim(PROJECT_ROOT)."/",__DIR__.'/../views/html/login');
+ }
+ else
+ {	
+ 	$router->get(rtrim(PROJECT_ROOT)."/",__DIR__.'/../views/html/encuesta');
+ }
  
 ?>

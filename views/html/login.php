@@ -10,9 +10,12 @@
 <!------ Include the above in your HEAD tag ---------->
 <link rel="stylesheet" href="views/html/estilos/encuesta.cs
 s">
+<link rel="shortcut icon" type="image/x-icon" href="../<?php echo rtrim(PROJECT_ROOT); ?>/views/recursos/Icono.ico" />
+  <title>Login-Ucaplus</title>
   </head>
 <body id="LoginForm">
   <?php
+ error_reporting(0);
  /**
   * @author José Joaquín Pérez-Calderón Ortiz - José Manuel Morales García
   * @version 1.0
@@ -38,16 +41,21 @@ s">
 $boton=$_POST["enviar"];
 $usuario=$_POST["usuario"];
 $contrasenia=sha1($_POST["contrasena"]);
-if(isset($boton)){
+if(isset($boton))
+{
   $sql="select usuario, contrasenna from usuario where usuario in('".$usuario."')and contrasenna in('".$contrasenia."')";
   $stm=$conexion->query($sql);
   $res=$stm->fetch();
-  echo $res["tipo"];
-  if($res["tipo"]==0)//1 = Profesor 0= Alumno
-  $router->get(rtrim(PROJECT_ROOT)."/",__DIR__.'/../views/html/administracion');
-  else{
-
-  $router->get(rtrim(PROJECT_ROOT)."/",__DIR__.'/../views/html/encuesta');
+  if($res)
+  {
+    //echo $res["tipo"];
+    $_SESSION["datos_sesion"] = array($res["tipo"],$res["id"]);//Tipo de usuario e id
+    echo "Location: localhost/".rtrim(PROJECT_ROOT)."/";
+    header(rtrim("Location: /".rtrim(PROJECT_ROOT)."/"));
+  }
+  else
+  {
+    echo "Datos Incorrectos";
   }
 }
 
@@ -62,7 +70,7 @@ if(isset($boton)){
   <div class="main-div">
     <div class="panel">
    <h2>Login</h2>
-   <p>Email y contraseña</p>
+   <p>Usuario y contraseña</p>
    </div>
     <form id="Login" method="post" action="">
 
@@ -83,5 +91,8 @@ if(isset($boton)){
     </form>
     </div>
 <p class="botto-text">&copy;Jos&eacute; Manuel Morales Garc&iacute;a</p>
-</div></div></div></div>
+</div>
+</div>
+</div>
+</div>
 </body></html>

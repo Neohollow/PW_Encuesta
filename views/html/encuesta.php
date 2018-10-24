@@ -13,10 +13,12 @@
 
  $conexion = new PDOp($dsn,USER,PASS);//Creamos la conexión
  $conexion->query("SET NAMES 'utf8'");
- /**
-  * Comprobamos si el servidor soporta la version de PHP actual.
-  */
 
+ if(isset($_POST["c_sesion"]))
+ {
+  session_unset($_SESSION["datos_sesion"]);
+  header(rtrim("Location: /".rtrim(PROJECT_ROOT)."/"));  
+ }
  if(isset($_POST["enviar"]))
  {
  	
@@ -43,8 +45,13 @@
   <!-- José Manuel Morales García -->  
 	<link rel="stylesheet" href="views/html/estilos/encuesta.css">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Encuesta-Ucaplus</title>
+  <link rel="shortcut icon" type="image/x-icon" href="../<?php echo rtrim(PROJECT_ROOT); ?>/views/recursos/Icono.ico" />
   </head>
   <body>
+    <form action="" method="post">
+      <div id="c_sesion"><input type="submit" name="c_sesion" value="Cerrar Sesión"/></div>
+    </form>
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     <title> Encuesta </title>
 
