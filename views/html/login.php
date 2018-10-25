@@ -43,14 +43,13 @@ $usuario=$_POST["usuario"];
 $contrasenia=sha1($_POST["contrasena"]);
 if(isset($boton))
 {
-  $sql="select usuario, contrasenna from usuario where usuario in('".$usuario."')and contrasenna in('".$contrasenia."')";
+  $sql="select usuario, contrasenna,tipo from usuario where usuario in('".$usuario."')and contrasenna in('".$contrasenia."')";
   $stm=$conexion->query($sql);
   $res=$stm->fetch();
   if($res)
   {
-    //echo $res["tipo"];
-    $_SESSION["datos_sesion"] = array($res["tipo"],$res["id"]);//Tipo de usuario e id
-    echo "Location: localhost/".rtrim(PROJECT_ROOT)."/";
+    echo $res["tipo"];
+    $_SESSION["datos_sesion"] = $res["tipo"];//Tipo de usuario e id
     header(rtrim("Location: /".rtrim(PROJECT_ROOT)."/"));
   }
   else
@@ -65,7 +64,6 @@ if(isset($boton))
 <div class="container align-items-center">
 <div class="row">
 <div class="col-sm-6 offset-sm-3 text-center">
-<h1 class="form-heading">Formulario</h1>
   <div class="login-form">
   <div class="main-div">
     <div class="panel">
@@ -77,13 +75,13 @@ if(isset($boton))
         <div class="form-group">
 
 
-            <input type="text" class="form-control" name="usuario" placeholder="Usuario">
+            <input type="text" class="form-control" name="usuario" placeholder="Usuario" required>
 
         </div>
 
         <div class="form-group">
 
-            <input type="password" class="form-control" name="contrasena" placeholder="Contrase&ntilde;a">
+            <input type="password" class="form-control" name="contrasena" placeholder="Contrase&ntilde;a" required>
 
         </div>
         <button type="submit" class="btn btn-primary" name="enviar">Enviar</button>

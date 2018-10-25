@@ -19,14 +19,20 @@
  }
  $request = $_SERVER['REQUEST_URI'];
  $router = new Router($request);//Obtenemos la ruta actual
-
+ 
  if(!isset($_SESSION["datos_sesion"]))
  {
  	$router->get(rtrim(PROJECT_ROOT)."/",__DIR__.'/../views/html/login');
  }
  else
  {	
- 	$router->get(rtrim(PROJECT_ROOT)."/",__DIR__.'/../views/html/encuesta');
+ 	$datos = $_SESSION["datos_sesion"];
+ 	if($datos==0)
+ 		$router->get(rtrim(PROJECT_ROOT)."/",__DIR__.'/../views/html/encuesta');
+ 	else
+ 	{
+ 		$router->get(rtrim(PROJECT_ROOT)."/",__DIR__.'/../views/html/admin');
+ 	}
  }
  
 ?>

@@ -5,20 +5,17 @@
   */
  define('USER','root');//Cambiar usuario
  define('PASS','');//Cambiar la pass
- //define('FECHA_CADENA',strtotime(FECHA));
 
  require __DIR__.'./../../Clases/conexion.php';
+ require __DIR__.'/logout/logout.php';//llamada implicita a check to close
  $dsn = 'mysql:dbname=encuesta;host=127.0.0.1;';
  //Creamos la conexión
 
  $conexion = new PDOp($dsn,USER,PASS);//Creamos la conexión
  $conexion->query("SET NAMES 'utf8'");
 
- if(isset($_POST["c_sesion"]))
- {
-  session_unset($_SESSION["datos_sesion"]);
-  header(rtrim("Location: /".rtrim(PROJECT_ROOT)."/"));  
- }
+ checkTocloseSession();
+
  if(isset($_POST["enviar"]))
  {
  	
@@ -35,6 +32,10 @@
   
  	//Una vez obtenida la seleccion del usuario procedemos a insertar  su resultado en la bbdd
   //ifconfig -L en0 || ipconfig -L en0
+  $resultado = shell_exec("ifconfig -L en0");//Obtenemos la Mac Address
+  
+  /*$aResult = explode(" ",$resultado);
+  echo $aResult[8];*/
  	
  }
 ?>
@@ -49,9 +50,6 @@
   <link rel="shortcut icon" type="image/x-icon" href="../<?php echo rtrim(PROJECT_ROOT); ?>/views/recursos/Icono.ico" />
   </head>
   <body>
-    <form action="" method="post">
-      <div id="c_sesion"><input type="submit" name="c_sesion" value="Cerrar Sesión"/></div>
-    </form>
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     <title> Encuesta </title>
 

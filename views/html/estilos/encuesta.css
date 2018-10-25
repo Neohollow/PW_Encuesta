@@ -73,6 +73,10 @@ min-height: 100%;
   height: 50px;
   line-height: 50px;
 }
+.login-form
+{
+  margin-top: 25%;
+}
 .main-div {
   background: #ffffff none repeat scroll 0 0;
   border-radius: 2px;
@@ -114,3 +118,15 @@ min-height: 100%;
 .back { text-align: left; margin-top:10px;}
 .back a {color: #444444; font-size: 13px;text-decoration: none;}
 .center_div{margin:0 auto;width:80%;}
+/*
+############
+ADMIN-PANEL
+############
+*/
+#statistics
+{
+  color: #ffffff;
+  text-shadow: 1px 1px #000000;
+  text-decoration: none;
+  font-size: 23px;
+}
