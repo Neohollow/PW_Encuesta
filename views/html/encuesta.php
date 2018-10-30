@@ -32,8 +32,6 @@
   
  	//Una vez obtenida la seleccion del usuario procedemos a insertar  su resultado en la bbdd
   //ifconfig -L en0 || ipconfig -L en0
-  $resultado = shell_exec("ifconfig -L en0");//Obtenemos la Mac Address
-  
   /*$aResult = explode(" ",$resultado);
   echo $aResult[8];*/
  	
