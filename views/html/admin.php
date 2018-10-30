@@ -14,7 +14,7 @@
   	?>
   	<center><h1>Admin panel</h1>
   		<br/>
-  		<a href="#" id="statistics">Ver estadísticas</a>
+  		<a href="statistics/est.php" id="statistics">Ver estadísticas</a>
   	</center>
   </body>
  </html>

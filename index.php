@@ -5,6 +5,9 @@
  	 * @version 1.0
  	 */
 	define('PROJECT_ROOT',basename(dirname(__FILE__)).PHP_EOL);
+
+	$GLOBALS['ruta'] = PROJECT_ROOT;
+	
 	require(__DIR__.'/kernel/index.php');//Incluimos el kernel
 	/*
 		Comprobamos si el usuario puede sufrir anomalías.

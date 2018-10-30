@@ -11,6 +11,7 @@
  define('PHP_V',5);
  //Rutas a cargar
  include __DIR__.'/../Clases/Router.php';
+
  function checkPHPV()
  {
  	$expl_vsn = explode('.', PHP_VERSION);
@@ -32,6 +33,7 @@
  	else
  	{
  		$router->get(rtrim(PROJECT_ROOT)."/",__DIR__.'/../views/html/admin');
+ 		$router->get(rtrim(PROJECT_ROOT)."/est",__DIR__.'/../views/html/statistics');
  	}
  }
  
