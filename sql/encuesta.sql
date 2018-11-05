@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2018 a las 11:09:50
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 5.6.38
+-- Servidor: localhost
+-- Tiempo de generación: 05-11-2018 a las 17:53:04
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,21 +25,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `encuesta`
+-- Estructura de tabla para la tabla `asignatura`
 --
 
-CREATE TABLE `encuesta` (
-  `id_encuesta` int(11) NOT NULL,
-  `id_profesor` int(11) NOT NULL,
-  `cod_asignatura` int(11) NOT NULL
+CREATE TABLE `asignatura` (
+  `id` int(11) NOT NULL,
+  `cod_grupo` int(11) DEFAULT NULL,
+  `cod_titulacion` int(11) DEFAULT NULL,
+  `nombre` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `encuesta`
+-- Estructura de tabla para la tabla `grupo`
 --
 
-INSERT INTO `encuesta` (`id_encuesta`, `id_profesor`, `cod_asignatura`) VALUES
-(1, 1234, 567);
+CREATE TABLE `grupo` (
+  `id` int(11) NOT NULL,
+  `cod_asig` int(11) NOT NULL,
+  `cod_titul` int(11) NOT NULL,
+  `nombre` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -93,6 +100,60 @@ INSERT INTO `pregunta` (`id_seccion`, `id_pregunta`, `pregTexto`, `id`) VALUES
 (8, 2, 'Los criterios y sistemas de evaluación me parecen adecuados, en el contexto de la asignatura', 32),
 (9, 1, 'Las actividades desarrolladas (teóricas, prácticas, de trabajo individual, en grupo,...)\r\ncontribuyen a alcanzar los objetivos de la asignatura', 33),
 (9, 2, 'Estoy satisfecho/a con la labor docente de este/a profesor/a', 34);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `resest`
+--
+
+CREATE TABLE `resest` (
+  `id` int(11) NOT NULL,
+  `id_pregunta` int(11) DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `texto` varchar(40) DEFAULT NULL,
+  `id_asig` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `resest`
+--
+
+INSERT INTO `resest` (`id`, `id_pregunta`, `id_usuario`, `texto`, `id_asig`) VALUES
+(1, 1, 2, '>3', 12345),
+(2, 2, 2, '>3', 12345),
+(3, 3, 2, 'Bastante', 12345),
+(4, 4, 2, 'Algo', 12345),
+(5, 5, 2, 'Alta', 12345),
+(6, 6, 2, 'Aprobado', 12345),
+(7, 7, 2, 'Entre 50%-80%', 12345),
+(8, 8, 2, '24-25', 12345),
+(9, 9, 2, 'Mujer', 12345),
+(10, 10, 2, '5', 12345),
+(11, 11, 2, '3', 12345),
+(12, 12, 2, '4', 12345),
+(13, 13, 2, '3', 12345),
+(14, 14, 2, '3', 12345),
+(15, 15, 2, '4', 12345),
+(16, 16, 2, 'NS', 12345),
+(17, 17, 2, '4', 12345),
+(18, 18, 2, 'NS', 12345),
+(19, 19, 2, '3', 12345),
+(20, 20, 2, '3', 12345),
+(21, 21, 2, '5', 12345),
+(22, 22, 2, '4', 12345),
+(23, 23, 2, '3', 12345),
+(24, 24, 2, '4', 12345),
+(25, 25, 2, '5', 12345),
+(26, 26, 2, '2', 12345),
+(27, 27, 2, '4', 12345),
+(28, 28, 2, '5', 12345),
+(29, 29, 2, '5', 12345),
+(30, 30, 2, '5', 12345),
+(31, 31, 2, '5', 12345),
+(32, 32, 2, '5', 12345),
+(33, 33, 2, '4', 12345),
+(34, 34, 2, '4', 12345);
 
 -- --------------------------------------------------------
 
@@ -328,6 +389,17 @@ INSERT INTO `seccion` (`id_seccion`, `tipo_seccion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `titulacion`
+--
+
+CREATE TABLE `titulacion` (
+  `id` int(11) DEFAULT NULL,
+  `nombre` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -352,15 +424,27 @@ INSERT INTO `usuario` (`id`, `usuario`, `contrasenna`, `email`, `tipo`) VALUES
 --
 
 --
--- Indices de la tabla `encuesta`
+-- Indices de la tabla `asignatura`
 --
-ALTER TABLE `encuesta`
-  ADD PRIMARY KEY (`id_encuesta`);
+ALTER TABLE `asignatura`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `grupo`
+--
+ALTER TABLE `grupo`
+  ADD PRIMARY KEY (`id`,`cod_asig`,`cod_titul`);
 
 --
 -- Indices de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `resest`
+--
+ALTER TABLE `resest`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -388,23 +472,20 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT de la tabla `encuesta`
---
-ALTER TABLE `encuesta`
-  MODIFY `id_encuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
+--
+-- AUTO_INCREMENT de la tabla `resest`
+--
+ALTER TABLE `resest`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
