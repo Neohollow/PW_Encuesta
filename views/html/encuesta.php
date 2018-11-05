@@ -9,6 +9,7 @@
  require __DIR__.'./../../Clases/conexion.php';
  require __DIR__.'/logout/logout.php';//llamada implicita a check to close
  $dsn = 'mysql:dbname=encuesta;host=127.0.0.1;';
+ $datos = $_SESSION["datos_sesion"];//Datos de sesión
  //Creamos la conexión
 
  $conexion = new PDOp($dsn,USER,PASS);//Creamos la conexión
@@ -35,13 +36,13 @@
   for ($i=0; $i < count($vector)-1; $i++) 
   { 
     if($i==0)
-     $sqlinsercion .= "values(".($i+1).",2,'".$vector[$i]."',".$cod_a."),";
+     $sqlinsercion .= "values(".($i+1).",".$datos[1].",'".$vector[$i]."',".$cod_a."),";
     else
     {
-      $sqlinsercion .= "(".($i+1).",2,'".$vector[$i]."',".$cod_a."),"; 
+      $sqlinsercion .= "(".($i+1).",".$datos[1].",'".$vector[$i]."',".$cod_a."),"; 
     }
   }  
-  $sqlinsercion .="(".count($vector).",2,'".$vector[count($vector)-1]."',".$cod_a.");";
+  $sqlinsercion .="(".count($vector).",".$datos[1].",'".$vector[count($vector)-1]."',".$cod_a.");";
   
   try{
       $conexion->prepare($sqlinsercion)->execute($data);
@@ -53,13 +54,17 @@
     die('Error: '.$e->GetMessage());
   }
 
- 	//Una vez obtenida la seleccion del usuario procedemos a insertar  su resultado en la bbdd
-  //ifconfig -L en0 || ipconfig -L en0
-  $resultado = shell_exec("ifconfig -L en0");//Obtenemos la Mac Address
-  
-  /*$aResult = explode(" ",$resultado);
-  echo $aResult[8];*/
- 	
+ 	/*
+   * Aquí procedemos a eliminar la sesión del usuario y redirigimos
+   */
+ 	unset($_SESSION["datos_sesion"]);
+  header(rtrim("Location: /".rtrim(PROJECT_ROOT)."/"));
+  /*
+   * El usuario es redirigido a la pantalla de login,
+   * este usuario no volverá a realizar la encuesta
+   */
+
+
  }
 ?>
 

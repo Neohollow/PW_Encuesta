@@ -43,18 +43,18 @@ $usuario=$_POST["usuario"];
 $contrasenia=sha1($_POST["contrasena"]);
 if(isset($boton))
 {
-  $sql="select usuario, contrasenna,tipo from usuario where usuario in('".$usuario."')and contrasenna in('".$contrasenia."')";
+  $sql="select id, usuario, contrasenna, tipo from usuario where usuario in('".$usuario."')and contrasenna in('".$contrasenia."') and id not in(select id_usuario from resest)";
   $stm=$conexion->query($sql);
   $res=$stm->fetch();
   if($res)
   {
-    echo $res["tipo"];
-    $_SESSION["datos_sesion"] = $res["tipo"];//Tipo de usuario e id
+    $datos = array($res["tipo"],$res["id"]);
+    $_SESSION["datos_sesion"] = $datos;//Tipo de usuario e id
     header(rtrim("Location: /".rtrim(PROJECT_ROOT)."/"));
   }
   else
   {
-    echo "Datos Incorrectos";
+    echo "<center>Datos Incorrectos o bien ha realizado la encuesta</center>";
   }
 }
 
