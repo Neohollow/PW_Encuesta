@@ -25,13 +25,38 @@
 
  	$vector = array();
  	for ($i=0; $i < 34; $i++) { 
- 	 array_push($vector, $_POST["$i"]);
+ 	 array_push($vector, $_POST[$i]);
  	}
-  $check = false;
+
+
+
+  $sqlinsercion = "insert into resest(id_pregunta,id_usuario,texto,id_asig)";
+
+  for ($i=0; $i < count($vector)-1; $i++) 
+  { 
+    if($i==0)
+     $sqlinsercion .= "values(".($i+1).",2,'".$vector[$i]."',".$cod_a."),";
+    else
+    {
+      $sqlinsercion .= "(".($i+1).",2,'".$vector[$i]."',".$cod_a."),"; 
+    }
+  }  
+  $sqlinsercion .="(".count($vector).",2,'".$vector[count($vector)-1]."',".$cod_a.");";
   
-  
+  try{
+      $conexion->prepare($sqlinsercion)->execute($data);
+      //Una vez relizada la encuesta se lanza mensaje y redireccion a login
+  }
+  catch(Exception $e)
+  {
+    //mensaje en caso de error
+    die('Error: '.$e->GetMessage());
+  }
+
  	//Una vez obtenida la seleccion del usuario procedemos a insertar  su resultado en la bbdd
   //ifconfig -L en0 || ipconfig -L en0
+  $resultado = shell_exec("ifconfig -L en0");//Obtenemos la Mac Address
+  
   /*$aResult = explode(" ",$resultado);
   echo $aResult[8];*/
  	
